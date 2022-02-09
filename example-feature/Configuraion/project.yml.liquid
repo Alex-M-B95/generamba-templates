@@ -1,0 +1,50 @@
+name: {{ module_info.name }}
+
+options:
+  usesTabs: true
+  deploymentTarget:
+    iOS: "11.0"
+
+fileGroups:
+  - .project.yml
+
+targets:
+  {{ module_info.name }}:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Sources
+        excludes:
+          - "*.plist"
+      - path: Sources/Info.plist
+        group: "Sources/Support Files"
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/Info.plist
+        ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: $(inherited)
+        TARGETED_DEVICE_FAMILY: 1
+        DEVELOPMENT_TEAM: {{ custom_parameters.team }}
+        XCODEGEN_STATE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: {{ custom_parameters.bundle }}
+
+  {{ module_info.name }}Tests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: {{ module_info.name }}
+
+schemes:
+  {{ module_info.name }}:
+    build:
+      parallelizeBuild: true
+      targets:
+        {{ module_info.name }}: all
+        {{ module_info.name }}Tests: tests
+    test:
+      gatherCoverageData: true
+      targets:
+        - name: {{ module_info.name }}Tests
+          parallelizable: true
+          randomExecutionOrder: true

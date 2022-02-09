@@ -1,0 +1,19 @@
+# Template information section
+name: example-feature
+summary: desc
+author: Alex.M
+version: 1.0.0
+license: MIT
+
+# The declarations for code files
+code_files:
+- {name: Source/Feature.swift, path: Source/feature.swift.liquid}
+- {custom_name: Source/Info.plist, path: Source/Info.plist}
+- {custom_name: .project.yml, path: Configuration/project.yml.liquid}
+
+# The declarations for test files
+test_files:
+- {name: Tests/FeatureTests.swift, path: Tests/feature_tests.swift.liquid}
+
+# Template dependencies
+# dependencies:

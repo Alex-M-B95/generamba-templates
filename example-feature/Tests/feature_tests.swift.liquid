@@ -1,0 +1,15 @@
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//
+
+import Foundation
+import XCTest
+
+@testable import {{ module_info.name }}
+
+class {{ module_info.name }}Tests: XCTestCase {
+	func testGreeting() {
+		XCTAssertFalse({{ module_info.name }}.greeting.isEmpty)
+		XCTAssertEqual({{ module_info.name }}.greeting, "Hello, from {{ module_info.name }}")
+	}
+}
